@@ -8,5 +8,7 @@ main:
     url: /Blogs/
   - title: "Code"
     url: /Code/
+  - title: "Teaching"
+    url: /Teaching/
   # - title: "Sitemap"
   #   url: /sitemap/
