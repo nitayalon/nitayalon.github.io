@@ -1,14 +1,14 @@
 # main links
 main:
   - title: "Late night data thoughts"
-  #  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  - title: "About"
-    url: /About/
+    url: /Data/
   - title: "Blogs"
     url: /Blogs/
   - title: "Code"
     url: /Code/
   - title: "Teaching"
     url: /Teaching/
+  - title: "About"
+    url: /About/
   # - title: "Sitemap"
   #   url: /sitemap/
