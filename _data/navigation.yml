@@ -3,10 +3,10 @@ main:
   - title: "Late night data thoughts"
   #  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   - title: "About"
-      url: /About/
+    url: /About/
   - title: "Blogs"
-      url: /Blogs/
+    url: /Blogs/
   - title: "Code"
-      url: /Code/
+    url: /Code/
   # - title: "Sitemap"
   #   url: /sitemap/
