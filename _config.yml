@@ -108,7 +108,7 @@ analytics:
 author:
   name             : "Nitay Alon"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Statistician by training, Data scientist by profession"
+  bio              : "PhD student in RL and cognitive neuroscience"
   location         : "Maagan Michael, Israel"
   email            :
   links:
