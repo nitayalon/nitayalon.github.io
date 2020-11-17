@@ -2,8 +2,8 @@
 main:
 #  - title: "Nitay Alon"
 #    url: /Data/
-  - title: "Blogs"
-    url: /Blogs/
+  - title: "Papers"
+    url: /Papers/
   - title: "Code"
     url: /Code/
   - title: "Teaching"
