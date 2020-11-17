@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Welcome post"
+title:  "About me"
 date: 2020-11-17
 ---
 
