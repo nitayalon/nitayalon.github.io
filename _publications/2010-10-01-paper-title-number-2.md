@@ -4,9 +4,9 @@ collection: publications
 permalink: /publication/tom_and_paranoia_icml_workshop
 excerpt: ''
 date: 2023-07
-venue: 'ICML first ToM workshop'
+venue: 'First Workshop on Theory of Mind in Communicating Agents'
 paperurl: 'https://openreview.net/pdf?id=gB9zrEjhZD'
-citation: 'Alon et al. (2023). &quot;Between prudence and paranoia: Theory of Mind gone right, and wrong.&quot; <i>ICML first ToM workshop</i>.'
+citation: 'Alon et al. (2023). &quot;Between prudence and paranoia: Theory of Mind gone right, and wrong.&quot; <i>First Workshop on Theory of Mind in Communicating Agents</i>.'
 ---
 In this work (accepted as an oral talk), we explored how deep recursive opponent modeling (high level of theory of mind) leads to paranoia like behaviour in mixed motive games.
 
@@ -14,4 +14,4 @@ We simulated agents with varying degree of Depth of Mentalisation (DoM) - the nu
 
 [Download paper here](https://openreview.net/pdf?id=gB9zrEjhZD)
 
-Recommended citation: Alon et al. (2023). "Between prudence and paranoia: Theory of Mind gone right, and wrong" <i>ICML 2023 first ToM workshop</i>.
+Recommended citation: Alon et al. (2023). "Between prudence and paranoia: Theory of Mind gone right, and wrong" <i>First Workshop on Theory of Mind in Communicating Agents</i>.
