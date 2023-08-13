@@ -1,15 +1,17 @@
 ---
-title: "Paper Title Number 2"
+title: "Between prudence and paranoia: Theory of Mind gone right, and wrong"
 collection: publications
-permalink: /publication/2010-10-01-paper-title-number-2
-excerpt: 'This paper is about the number 2. The number 3 is left for future work.'
-date: 2010-10-01
-venue: 'Journal 1'
-paperurl: 'http://academicpages.github.io/files/paper2.pdf'
-citation: 'Your Name, You. (2010). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
+permalink: /publication/tom_and_paranoia_icml_workshop
+excerpt: ''
+date: 2023-07
+venue: 'ICML first ToM workshop'
+paperurl: 'https://openreview.net/pdf?id=gB9zrEjhZD'
+citation: 'Alon et al. (2023). &quot;Between prudence and paranoia: Theory of Mind gone right, and wrong.&quot; <i>ICML first ToM workshop</i>.'
 ---
-This paper is about the number 2. The number 3 is left for future work.
+In this work (accepted as an oral talk), we explored how deep recursive opponent modeling (high level of theory of mind) leads to paranoia like behaviour in mixed motive games.
 
-[Download paper here](http://academicpages.github.io/files/paper2.pdf)
+We simulated agents with varying degree of Depth of Mentalisation (DoM) - the number of nested models they assign to others, in the iterated ultimatum game to show that when very high DoM agents interact with very simple agents (who play randomlly), the high level DoM agent classify these random agents as sophisticaed deceptive agents.
 
-Recommended citation: Your Name, You. (2010). "Paper Title Number 2." <i>Journal 1</i>. 1(2).
+[Download paper here](https://openreview.net/pdf?id=gB9zrEjhZD)
+
+Recommended citation: Alon et al. (2023). "Between prudence and paranoia: Theory of Mind gone right, and wrong" <i>ICML 2023 first ToM workshop</i>.
