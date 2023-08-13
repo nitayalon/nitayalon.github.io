@@ -3,7 +3,7 @@ title: "Between prudence and paranoia: Theory of Mind gone right, and wrong"
 collection: publications
 permalink: /publication/tom_and_paranoia_icml_workshop
 excerpt: ''
-date: 2023-07
+date: 2023-07-28
 venue: 'First Workshop on Theory of Mind in Communicating Agents'
 paperurl: 'https://openreview.net/pdf?id=gB9zrEjhZD'
 citation: 'Alon et al. (2023). &quot;Between prudence and paranoia: Theory of Mind gone right, and wrong.&quot; <i>First Workshop on Theory of Mind in Communicating Agents</i>.'
