@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Nitay Alon / PhD student"
+title                    : "Nitay Alon"
 title_separator          : "-"
 name                     : &name "Nitay Alon"
 description              : &description "Multi agnet RL/Theory of Mind"
