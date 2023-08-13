@@ -80,7 +80,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Sidebar Name"
+  name             : "About me"
   avatar           : "profile.png"
   bio              : "PhD student, researching Theory of Mind and Multi-Agent RL"
   location         : "Location"

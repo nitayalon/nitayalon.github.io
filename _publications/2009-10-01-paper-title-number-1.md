@@ -1,15 +1,15 @@
 ---
-title: "Paper Title Number 1"
+title: "A (dis-) information theory of revealed and unrevealed preferences"
 collection: publications
-permalink: /publication/2009-10-01-paper-title-number-1
-excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
+permalink: /publication/disinformation_neurips_2022
+excerpt: ''
 date: 2009-10-01
-venue: 'Journal 1'
-paperurl: 'http://academicpages.github.io/files/paper1.pdf'
-citation: 'Your Name, You. (2009). &quot;Paper Title Number 1.&quot; <i>Journal 1</i>. 1(1).'
+venue: 'NeurIPS InfoCog workshop'
+paperurl: 'https://openreview.net/pdf?id=vcpQW_fGaj5'
+citation: 'Alon et al. (2022). &quot;A (dis-) information theory of revealed and unrevealed preferences.&quot; <i>NeurIPS InfoCog workshop</i>.'
 ---
-This paper is about the number 1. The number 2 is left for future work.
+In this paper we explored the rise of deception stemming solely from Theory of Mind (ToM) and mixed motive game. We showed that agents use their ToM to deceive others in a simple buyer-seller game. In response to this manipulation, agents with higher ToM levels learned to ignore the behaviour of others, growing skeptic towards them - dismissing their actions as "cheap-talk". We used Information Theory to measure deception and skepticism.
 
-[Download paper here](http://academicpages.github.io/files/paper1.pdf)
+[Download paper here](https://openreview.net/pdf?id=vcpQW_fGaj5)
 
 Recommended citation: Your Name, You. (2009). "Paper Title Number 1." <i>Journal 1</i>. 1(1).
