@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Your Sidebar Name"
   avatar           : "profile.png"
-  bio              : ""PhD student, researching Theory of Mind and Multi-Agent RL""
+  bio              : "PhD student, researching Theory of Mind and Multi-Agent RL"
   location         : "Location"
   employer         : "Hebrew University and Max Planck for Cybernetics"
   pubmed           : 
