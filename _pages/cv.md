@@ -11,30 +11,10 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-
-Work experience
-======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Ph.D in Computer Science, The Hebrew University, 2025 (expected)
+* M.S. in Statistics and ML, Magna Cum Laude, Tel Aviv University, 2019 
+* B.Sc. in Statistics, Tel Aviv University, 2015 
+* B.A. in Economics, Tel Aviv University, 2015 
 
 Publications
 ======
@@ -42,6 +22,27 @@ Publications
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
+
+Work experience
+======
+* 2016-2019: Senior Data Scientist
+  * Optimove, Data Science Lab
+  * Developing and deploying Bayesian campaign analysis
+  * Developing and deploying Recommendation-System
+  * Developing and deploying MAB based algorithm for customer journeys optimization
+
+* 2015-2016: Data Scientist
+  * IBM, GBS
+  * Cyber and Real time team
+  
+Skills
+======
+* Programming language:
+  * **Python**: high level
+  * **R**: high level
+  * **C#**: intermediate  level
+  * **C++**: intermediate  level
+
 Talks
 ======
   <ul>{% for post in site.talks %}
@@ -53,7 +54,3 @@ Teaching
   <ul>{% for post in site.teaching %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
