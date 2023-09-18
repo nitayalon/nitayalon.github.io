@@ -81,7 +81,7 @@ analytics:
 # Site Author
 author:
   name             : "About me"
-  avatar           : "profile.pdf"
+  avatar           : "profile.png"
   bio              : "PhD student, researching Theory of Mind and Multi-Agent RL"  
   employer         : 
   pubmed           : 
