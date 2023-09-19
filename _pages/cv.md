@@ -7,6 +7,7 @@ redirect_from:
   - /resume
 ---
 
+My CV are available as PDF [here](https://nitayalon.github.io/files/Academic_CV.pdf).
 {% include base_path %}
 
 Education
