@@ -13,3 +13,8 @@ You can also find my articles on <u><a href="{{author.googlescholar}}">my Google
 {% for post in site.publications reversed %}
   {% include archive-single.html %}
 {% endfor %}
+
+## Drafts
+
+Here you can find my current drafts:
+* $aleph$-IPOMDP [Academic CV](https://nitayalon.github.io/files/aleph_IPOMDP_arXiv.pdf)
