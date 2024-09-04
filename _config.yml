@@ -187,7 +187,12 @@ collections:
   talks:
     output: true
     permalink: /:collection/:path/
-
+journal_publications:
+    output: true
+    permalink: /:collection/:name
+workshop_publications:
+    output: true
+    permalink: /:collection/:name
 
 # Defaults
 defaults:
