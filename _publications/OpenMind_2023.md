@@ -1,7 +1,7 @@
 ---
 title: "A (dis-) information Theory of Revealed and Unrevealed Preferences: Emerging Deception and Skepticism via Theory of Mind"
 collection: publications
-subfolder: jouranls
+type: "journal" # or "workshop"
 permalink: /publication/open_mind_disinformation_paper
 excerpt: 'This paper extends the InfoCog paper from 2022.'
 date: 2023-08-03
