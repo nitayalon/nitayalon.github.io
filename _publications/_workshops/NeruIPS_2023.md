@@ -1,6 +1,7 @@
 ---
 title: "A (dis-) information theory of revealed and unrevealed preferences"
 collection: publications
+subfolder: workshops
 permalink: /publication/disinformation_neurips_2022
 excerpt: ''
 date: 2022-12-03

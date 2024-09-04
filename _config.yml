@@ -181,18 +181,18 @@ collections:
   publications:
     output: true
     permalink: /:collection/:path/
+    workshops:
+      output: true
+      permalink: /publications/workshops/:name
+    journals:
+      output: true
+      permalink: /publications/journals/:name
   portfolio:
     output: true
     permalink: /:collection/:path/
   talks:
     output: true
     permalink: /:collection/:path/
-  journal_publications:
-    output: true
-    permalink: /:collection/:name
-  workshop_publications:
-    output: true
-    permalink: /:collection/:name
 
 # Defaults
 defaults:

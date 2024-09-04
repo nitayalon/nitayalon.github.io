@@ -8,12 +8,12 @@ author_profile: true
 You can also find my articles on <u><a href="{{author.googlescholar}}">my Google Scholar profile</a>.</u>
 
 {% include base_path %}
-<!-- ## Journal papers
-{% for post in site.journal_publications reversed %}
+## Journal papers
+{% for post in site.publications.journals reversed %}
   {% include archive-single.html %}
-{% endfor %} -->
+{% endfor %}
 
-<!-- ## Workshop papers -->
+## Workshop papers
 {% for post in site.publications.workshops reversed %}
   {% include archive-single.html %}
 {% endfor %}
