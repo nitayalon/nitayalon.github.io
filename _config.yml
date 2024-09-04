@@ -187,10 +187,10 @@ collections:
   talks:
     output: true
     permalink: /:collection/:path/
-journal_publications:
+  journal_publications:
     output: true
     permalink: /:collection/:name
-workshop_publications:
+  workshop_publications:
     output: true
     permalink: /:collection/:name
 
