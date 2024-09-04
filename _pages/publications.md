@@ -9,12 +9,7 @@ You can also find my articles on <u><a href="{{author.googlescholar}}">my Google
 
 {% include base_path %}
 ## Papers
-{% for post in site.publications.journals reversed %}
-  {% include archive-single.html %}
-{% endfor %}
-
-## Workshop papers
-{% for post in site.publications.workshops reversed %}
+{% for post in site.publications reversed %}
   {% include archive-single.html %}
 {% endfor %}
 
