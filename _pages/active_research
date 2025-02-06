@@ -1,0 +1,11 @@
+---
+permalink: /active_research/
+title: "Active Research"
+excerpt: "Current Research Projects"
+author_profile: true
+---
+
+## Active Research
+
+### Limitations of Theory of Mind (ToM) Evaluation in Large Language Models (LLMs)
+In [this paper](https://arxiv.org/pdf/2412.13631), Eitan Wagner, Joe Barnby, and Omri Abend discuss the shortcomings of current methods for evaluating Theory of Mind (ToM) in Large Language Models (LLMs). They suggest that insights from Psychology and Economics are essential for refining ToM modeling in LLMs and for enhancing existing benchmarks and evaluation techniques.
