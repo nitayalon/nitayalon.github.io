@@ -1,5 +1,5 @@
 ---
-permalink: /
+permalink: /about/
 title: "About"
 excerpt: "Nitay Alon"
 author_profile: true
