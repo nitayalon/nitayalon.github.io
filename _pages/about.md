@@ -5,9 +5,41 @@ excerpt: "Nitay Alon"
 author_profile: true
 ---
 
-Hey! I'm Nitay Alon (for English speakers - pronounce like knit-tie), a CS PhD student with [Jeffrey Rosenschein (HUJI)](https://www.cs.huji.ac.il/~jeff/) and [Peter Dayan (Max Planck Institute)](https://www.mpg.de/12309370/biological-cybernetics-dayan). My main research field is Multi-Agent Reinforcement Learning (MARL). 
-In particular, my research aims at understanding the role of cognitive hierarchies, known as Theory of Mind (ToM) in MARL. I focus on mixed-motive problems. 
-I've explored the rise of deception in multi-agent RL as well as the detrimental effects arising from overmentalisation. 
+My CV are available as PDF [here](https://nitayalon.github.io/files/Academic_CV.pdf).
+{% include base_path %}
 
-In addition to research, I've been teaching a final project in Data-science to undergrads.
-When I have free time, I like to read, hike and weightlift!
+Education
+======
+* Ph.D in Computer Science, The Hebrew University, 2025 (expected)
+* M.S. in Statistics and ML, Magna Cum Laude, Tel Aviv University, 2019 
+* B.Sc. in Statistics, Tel Aviv University, 2015 
+* B.A. in Economics, Tel Aviv University, 2015 
+
+Publications
+======
+  <ul>{% for post in site.publications %}
+    {% include archive-single-cv.html %}
+  {% endfor %}</ul>
+  
+
+Work experience
+======
+* 2016-2019: Senior Data Scientist
+  * Optimove, Data Science Lab
+  * Developing and deploying Bayesian campaign analysis
+  * Developing and deploying Recommendation-System
+  * Developing and deploying MAB based algorithm for customer journeys optimization
+
+* 2015-2016: Data Scientist
+  * IBM, GBS
+  * Cyber and Real time team
+  
+Skills
+======
+* Programming language:
+  * **Python**: high level
+  * **R**: high level
+  * **C#**: intermediate  level
+  * **C++**: intermediate  level
+
+In addition to research and teaching, when I have free time, I like to read, hike and weightlift!
