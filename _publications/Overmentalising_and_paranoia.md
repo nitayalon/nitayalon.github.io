@@ -14,8 +14,8 @@ Understanding the intentions of others is crucial in competitive interactions, b
 
 Key findings include:
 
-    Strategic Advantage of ToM: Agents with well-calibrated mentalizing levels can successfully anticipate and counter deception.
-    Hyper-Mentalizing and Paranoia: Overly strategic agents misattribute simple behaviors as intentional deception, causing unnecessary skepticism and loss.
-    Computational Psychiatry Implications: This work provides a formal model linking excessive ToM with paranoia and conspiratorial ideation, challenging the idea that paranoia stems from a ToM deficit.
+* Strategic Advantage of ToM: Agents with well-calibrated mentalizing levels can successfully anticipate and counter deception.
+Hyper-Mentalizing and Paranoia: Overly strategic agents misattribute simple behaviors as intentional deception, causing unnecessary skepticism and loss.
+* Computational Psychiatry Implications: This work provides a formal model linking excessive ToM with paranoia and conspiratorial ideation, challenging the idea that paranoia stems from a ToM deficit.
 
 Our findings have implications for AI, cognitive science, and psychiatry, highlighting the importance of balancing strategic thinking with accurate social inference.
