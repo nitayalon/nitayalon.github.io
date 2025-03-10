@@ -1,6 +1,6 @@
 ---
 title: "Mind Your Theory: Theory of Mind Goes Deeper Than Reasoning"
-collection: preprint
+collection: preprints
 type: "preprint" # or "workshop"
 permalink: /preprint/mind_your_theory
 excerpt: "This paper discusses the pitfals of evaluating ToM in LLM's"

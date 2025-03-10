@@ -1,6 +1,6 @@
 ---
 title: "Detecting and Deterring Manipulation in a Cognitive Hierarchy"
-collection: preprint
+collection: preprints
 type: "preprint" # or "workshop"
 permalink: /preprint/aleph_ipomdp
 excerpt: 'This paper presents the aleph-IPOMDP model'
