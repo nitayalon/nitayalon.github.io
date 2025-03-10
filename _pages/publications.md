@@ -26,7 +26,7 @@ You can also find my articles on <u><a href="{{author.googlescholar}}">my Google
 ## Preprints
 
 Here you can find my current work:
-{% for post in site.preprints reversed %}
-  {{ post.title }} - {{ post.type }}<br>
+{% for post in site.publications reversed %}
+  {% if post.type == "preprint" %}
   {% include archive-single.html %}
 {% endfor %}

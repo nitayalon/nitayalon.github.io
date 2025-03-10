@@ -1,8 +1,8 @@
 ---
 title: "Mind Your Theory: Theory of Mind Goes Deeper Than Reasoning"
-collection: preprints
+collection: publications
 type: "preprint" # or "workshop"
-permalink: /preprint/mind_your_theory
+permalink: /publications/mind_your_theory
 excerpt: "This paper discusses the pitfals of evaluating ToM in LLM's"
 date: 2024-12-18
 venue: 'ArXiv'
