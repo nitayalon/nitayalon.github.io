@@ -10,7 +10,7 @@ paperurl: 'https://arxiv.org/pdf/2412.13631'
 citation: 'Wagner, Alon, Barnby and Abend. (2024). &quot;Mind Your Theory: Theory of Mind Goes Deeper Than Reasoning&quot; <i>ArXiv</i>'
 ---
 
-This work delves into the evaluation of Theory of Mind (ToM) capabilities in Large Language Models (LLMs). Drawing from cognitive science, the authors propose that ToM involves two critical steps:
+This work criticize the current methods for evaluation of Theory of Mind (ToM) capabilities in Large Language Models (LLMs). Drawing from cognitive science, we propose that ToM involves two critical steps:
 
 * Determining When to Invoke ToM: This step involves recognizing the necessity to apply ToM and deciding the appropriate Depth of Mentalizing (DoM), which refers to the level of recursive thinking required for a given task.
 
