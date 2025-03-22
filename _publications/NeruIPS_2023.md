@@ -2,6 +2,7 @@
 title: "A (dis-) information theory of revealed and unrevealed preferences"
 collection: publications
 type: "workshop" # or "workshop"
+project: "deception_in_marl"
 permalink: /publication/disinformation_neurips_2022
 excerpt: ''
 date: 2022-12-03

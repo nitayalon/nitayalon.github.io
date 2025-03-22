@@ -2,6 +2,7 @@
 title: "Detecting and Deterring Manipulation in a Cognitive Hierarchy"
 collection: publications
 type: "preprint" # or "workshop"
+project: "deception_in_marl"
 permalink: /publications/aleph_ipomdp
 excerpt: 'This paper presents the aleph-IPOMDP model'
 date: 2024-05-03

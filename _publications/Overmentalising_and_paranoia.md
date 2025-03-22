@@ -2,6 +2,7 @@
 title: "(Mal)adaptive Mentalizing in the Cognitive Hierarchy, and Its Link to Paranoia"
 collection: publications
 type: "journal" # or "workshop"
+project: "deception_in_marl"
 permalink: /publication/paranoia_and_overmentalisation
 excerpt: 'This paper extends the ICML paper from 2023.'
 date: 2024-08-29
