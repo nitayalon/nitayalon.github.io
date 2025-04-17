@@ -22,6 +22,8 @@ In this contexnt, a key area of my research is the emergence of deceptive strate
   {% endfor %}
 </ul>
 
-### Human-AI interaction in Cooperative Multi-Agent text games (the CodeNames project)
+## Human-AI interaction in Cooperative Multi-Agent text games (the CodeNames project)
+
 In this project my aim is to model, measure and improve human-ai cooperation in the game of CodeNames. 
 Particularly, my interest lies in *adapting* to new counterparts (zero-shot interaction), in a limited communication game.
+[https://kyb-codenames.tuebingen.mpg.de:3000/consent](Try it yourself!) 
