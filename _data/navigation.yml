@@ -1,5 +1,8 @@
 # main links links
 main:
+  - title: "Active Research"
+    url: /active_research/
+
   - title: "Updates and News"
     url: /updates/    
 
