@@ -1,13 +1,13 @@
 ---
 title: "Mind Your Theory: Theory of Mind Goes Deeper Than Reasoning"
 collection: publications
-type: "preprint" # or "workshop"
+type: "conference" # or "workshop"
 permalink: /publications/mind_your_theory
 excerpt: "This paper discusses the pitfals of evaluating ToM in LLM's"
 date: 2024-12-18
-venue: 'ArXiv'
-paperurl: 'https://arxiv.org/pdf/2412.13631'
-citation: 'Wagner, Alon, Barnby and Abend. (2024). &quot;Mind Your Theory: Theory of Mind Goes Deeper Than Reasoning&quot; <i>ArXiv</i>'
+venue: 'Findings in ACL'
+paperurl: 'https://aclanthology.org/2025.findings-acl.1368/'
+citation: 'Wagner, Alon, Barnby and Abend. (2025). &quot;Mind Your Theory: Theory of Mind Goes Deeper Than Reasoning&quot; <i>Findings of the Association for Computational Linguistics: ACL 2025, pages 26658–26668</i>'
 ---
 
 This work criticize the current methods for evaluation of Theory of Mind (ToM) capabilities in Large Language Models (LLMs). Drawing from cognitive science, we propose that ToM involves two critical steps:

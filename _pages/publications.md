@@ -15,6 +15,14 @@ You can also find my articles on <u><a href="{{author.googlescholar}}">my Google
   {% endif %}
 {% endfor %}
 
+## Conference Papers:
+{% for post in site.publications reversed %}
+  {% if post.type == "conference" %}
+    {% include archive-single.html %}
+  {% endif %}
+{% endfor %}
+
+
 ## Workshop Papers
 {% for post in site.publications reversed %}
   {% if post.type == "workshop" %}
