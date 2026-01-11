@@ -1,7 +1,7 @@
 ---
 title: "Aleph-IPOMDP: Mitigating Deception in a Cognitive Hierarchy with Off-Policy Counterfactual Anomaly Detection"
 collection: publications
-type: "preprint" # or "workshop"
+type: "journal" # or "workshop"
 project: "deception_in_marl"
 permalink: /publications/aleph_ipomdp
 excerpt: 'This paper presents the aleph-IPOMDP model'
@@ -10,5 +10,6 @@ venue: 'ArXiv'
 paperurl: 'https://arxiv.org/pdf/2405.01870'
 citation: 'Alon et al. (2024). &quot;Aleph-IPOMDP: Mitigating Deception in a Cognitive Hierarchy with Off-Policy Counterfactual Anomaly Detection &quot; <i>ArXiv</i>'
 ---
-(Acceped, JAIR)
+**Accepted to JAIR!**
+
 This paper addresses the vulnerability of agents with limited Theory of Mind (ToM) depth to manipulation by more sophisticated agents. To mitigate this, we propose the ℵ-IPOMDP framework, which enhances model-based reinforcement learning agents with anomaly detection and out-of-belief policies. This allows agents to recognize deceptive behaviors, even without fully understanding them, and to adopt defensive strategies. The framework's effectiveness is demonstrated in both mixed-motive and zero-sum games, leading to more equitable outcomes and reduced exploitation. The study's implications span AI safety, cybersecurity, cognitive science, and psychiatry.

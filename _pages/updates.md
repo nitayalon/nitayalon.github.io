@@ -5,4 +5,10 @@ excerpt: "Nitay Alon"
 author_profile: true
 ---
 
-* I'm happy and proud to announce that I'll be chairing the [ToM4AI](https://sites.google.com/view/theory-of-mind-aaai-2025/) workshop at AAAI 2025. If you are interested in ToM and AI, please consider attending
+## January 2026
+
+* I'll be participating in AAAI2026:
+  * Doctoral Consortium - check out [my talk and poster](/aaai2026dc-poster/)
+  * Chairing the [ToM4AI](https://tom4ai.github.io/events/AAAI2026/) workshop
+  
+* My paper "$\aleph$-IPOMDP: Mitigating Deception in a Cognitive Hierarchy with Off-Policy Counterfactual Anomaly Detection" was accepted to JAIR!

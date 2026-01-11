@@ -27,7 +27,7 @@ author_profile: true
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 15px; text-align: center; margin: 40px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
   <h2 style="color: white; margin-top: 0; font-size: 28px;">Let's Get in Touch!</h2>
   <p style="color: white; font-size: 18px; margin: 20px 0;">
-    I'd love to discuss my research with you.
+    I'd love to discuss my research with you and hear about your research.
   </p>
   <p style="color: white; font-size: 16px; margin-bottom: 25px;">
     Schedule a 45-minute meeting with me:
