@@ -5,11 +5,17 @@ excerpt: "AAAI 2026 DC - Nitay Alon"
 author_profile: true
 ---
 
-## AAAI 2026 Doctoral Consortium
-
 Welcome to my page for the AAAI 2026 Doctoral Consortium!
 
+## 📄 [View My Poster Walkthrough](/aaai2026dc-poster/)
+{: .text-center}
+
+A detailed explanation of my doctoral research and poster presentation.
+{: .text-center}
+
 ### Contact Information
+
+If you'd like to meet me (online or offline) - please find a time here:
 
 **Nitay Alon**  
 Ph.D. Candidate in Computer Science  
@@ -17,6 +23,7 @@ The Hebrew University of Jerusalem
 Max Planck Institute for Cybernetics
 
 **Email:** nitay.alon@mail.huji.ac.il
+---
 
 ---
 
