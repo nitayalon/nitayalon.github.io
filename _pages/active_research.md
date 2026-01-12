@@ -25,7 +25,7 @@ In this context, a key area of my research is the emergence of deceptive strateg
   {% endfor %}
 </ul>
 
-## Human-AI Interaction in Cooperative Multi-Agent Text Games (the CodeWords Project)
+### Human-AI Interaction in Word Association Games
 
 In this project, my aim is to model, measure and improve human-AI cooperation in the game of CodeWords (a variation of CodeNames). 
 Particularly, my interest lies in *adapting* to new counterparts (zero-shot interaction) in a limited communication game.
