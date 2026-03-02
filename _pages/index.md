@@ -15,3 +15,5 @@ For a detailed overview of my academic background and achievements, you can view
 
 ## Contact
 Feel free to reach out if you have any questions or would like to collaborate. Email me at: [nitay.alon@mail.huji.ac.il](mailto:nitay.alon@mail.huji.ac.il?subject=Message%20from%20website). 
+
+<img src="/images/fire_rabbit.png" alt="Fire Rabbit" title="I'm a Fire Rabbit" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: auto; z-index: 1000;">
