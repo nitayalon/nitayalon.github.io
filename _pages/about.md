@@ -10,7 +10,7 @@ My CV are available as PDF [here](https://nitayalon.github.io/files/Academic_CV.
 
 Education
 ======
-* Ph.D in Computer Science, The Hebrew University, 2025 (expected)
+* Ph.D in Computer Science, The Hebrew University, 2026 (expected)
 * M.S. in Statistics and ML, Magna Cum Laude, Tel Aviv University, 2019 
 * B.Sc. in Statistics, Tel Aviv University, 2015 
 * B.A. in Economics, Tel Aviv University, 2015 

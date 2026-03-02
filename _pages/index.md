@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Nitay Alon's Homepage"
+title: "Nitay Alon"
 excerpt: "Welcome to Nitay Alon's Homepage"
 author_profile: true
 ---
