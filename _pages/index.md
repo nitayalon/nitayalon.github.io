@@ -7,6 +7,10 @@ author_profile: true
 
 I'm Nitay Alon, a CS PhD student researching social aspects in Multi-Agent Reinforcement Learning (MARL). Here, you can find information about my [current research](https://nitayalon.github.io/active_research), [publications](https://nitayalon.github.io/publications), and more.
 
+## Recent News
+
+**March 2026**: I was interviewed by AIhub about my research on Theory of Mind in AI! Read the full interview [here](https://aihub.org/2026/03/16/ai-and-theory-of-mind-an-interview-with-nitay-alon/).
+
 ## About Me
 I'm currently pursuing my PhD under the guidance of [Jeffrey Rosenschein (HUJI)](https://www.cs.huji.ac.il/~jeff/) and [Peter Dayan (Max Planck Institute)](https://www.mpg.de/12309370/biological-cybernetics-dayan). My research focuses on understanding the role of cognitive hierarchies, known as Theory of Mind (ToM), in MARL, particularly in mixed-motive problems. You can learn more about me, my interests and my work [here](https://nitayalon.github.io/about).
 
