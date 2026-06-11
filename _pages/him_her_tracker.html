@@ -1,14 +1,8 @@
----
-layout: null
-permalink: /him-her-tracker/
-sitemap: false
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
 <title>HIM+HER · AAAI 2027 Progress Tracker</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,9 +27,26 @@ sitemap: false
   .progress-fill { height:100%; background:var(--green-ok); border-radius:3px; transition:width 0.4s ease; }
   .progress-label { font-size:12px; color:var(--text-muted); white-space:nowrap; }
   main { padding:20px 32px 0; }
-  .weeks-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:28px; }
+
+  /* phase banner */
+  .phase-banner { display:flex; align-items:center; gap:10px; margin:20px 0 10px; }
+  .phase-label { font-size:13px; font-weight:600; color:var(--text); }
+  .phase-badge { font-size:10px; font-weight:600; padding:2px 8px; border-radius:10px; }
+  .phase-badge.theory { background:var(--purple-fill); color:var(--purple-text); border:0.5px solid var(--purple-stroke); }
+  .phase-badge.exp    { background:var(--teal-fill);   color:var(--teal-text);   border:0.5px solid var(--teal-stroke); }
+  .phase-badge.write  { background:var(--amber-fill);  color:var(--amber-text);  border:0.5px solid var(--amber-stroke); }
+  .phase-badge.revise { background:var(--coral-fill);  color:var(--coral-text);  border:0.5px solid var(--coral-stroke); }
+
+  .weeks-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:12px; }
   .week-card { background:var(--surface); border:0.5px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
   .week-card.active { border-color:var(--purple-stroke); box-shadow:0 0 0 2px rgba(83,74,183,0.12); }
+  .week-card.phase-exp   { --active-color: var(--teal-stroke);   --active-glow: rgba(15,110,86,0.12); }
+  .week-card.phase-write { --active-color: var(--amber-stroke);  --active-glow: rgba(133,79,11,0.12); }
+  .week-card.phase-revise{ --active-color: var(--coral-stroke);  --active-glow: rgba(153,60,29,0.12); }
+  .week-card.phase-exp.active   { border-color:var(--teal-stroke);  box-shadow:0 0 0 2px rgba(15,110,86,0.12); }
+  .week-card.phase-write.active { border-color:var(--amber-stroke); box-shadow:0 0 0 2px rgba(133,79,11,0.12); }
+  .week-card.phase-revise.active{ border-color:var(--coral-stroke); box-shadow:0 0 0 2px rgba(153,60,29,0.12); }
+
   .week-head { padding:10px 12px 8px; border-bottom:0.5px solid var(--border); }
   .week-num { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; }
   .week-dates { font-size:10px; color:var(--text-faint); }
@@ -56,15 +67,24 @@ sitemap: false
   .decision-point { display:flex; align-items:flex-start; gap:8px; background:#FEF9EC; border:0.5px solid #EF9F27; border-radius:var(--radius); padding:8px 10px; margin-top:8px; }
   .diamond-icon { width:12px; height:12px; min-width:12px; background:var(--red); border-radius:2px; transform:rotate(45deg); margin-top:2px; }
   .decision-text { font-size:11px; color:#633806; line-height:1.4; }
-  .gantt-section { margin-bottom:28px; }
+
+  /* gate banner between phases */
+  .gate { display:flex; align-items:center; gap:10px; margin:10px 0 10px; padding:10px 14px; background:#FEF9EC; border:0.5px solid #EF9F27; border-radius:var(--radius); }
+  .gate-diamond { width:14px; height:14px; min-width:14px; background:var(--red); border-radius:2px; transform:rotate(45deg); }
+  .gate-text { font-size:12px; color:#633806; }
+  .gate-text strong { font-weight:600; }
+
+  /* gantt */
+  .gantt-section { margin-bottom:28px; margin-top:20px; }
   .section-title { font-size:13px; font-weight:600; color:var(--text); margin-bottom:10px; }
   .gantt-table { width:100%; border-collapse:collapse; }
   .gantt-table th { font-size:11px; font-weight:500; color:var(--text-muted); text-align:center; padding:4px 6px; border-bottom:0.5px solid var(--border-strong); }
-  .gantt-table th.label-col { text-align:left; width:200px; }
+  .gantt-table th.label-col { text-align:left; width:220px; }
   .gantt-table td { padding:3px 4px; vertical-align:middle; }
   .gantt-table td.label-col { font-size:12px; color:var(--text); padding-right:12px; white-space:nowrap; }
   .gantt-table tr:hover td { background:rgba(0,0,0,0.02); }
-  .gantt-table tr.section-row td { font-size:11px; font-weight:600; color:var(--text-muted); padding-top:12px; padding-bottom:2px; text-transform:uppercase; letter-spacing:0.4px; border-bottom:0.5px solid var(--border); }
+  .gantt-table tr.section-row td { font-size:11px; font-weight:600; color:var(--text-muted); padding-top:14px; padding-bottom:2px; text-transform:uppercase; letter-spacing:0.4px; border-bottom:0.5px solid var(--border); }
+  .gantt-table tr.gate-row td { background:#FEF9EC; border-top:0.5px solid #EF9F27; border-bottom:0.5px solid #EF9F27; font-size:11px; color:#633806; font-weight:600; padding:5px 4px; }
   .g-bar { height:18px; border-radius:4px; width:100%; }
   .g-bar.theory   { background:var(--purple-fill); border:0.5px solid var(--purple-stroke); }
   .g-bar.exp      { background:var(--teal-fill);   border:0.5px solid var(--teal-stroke); }
@@ -95,35 +115,40 @@ sitemap: false
 </div>
 
 <main>
-<div style="margin:20px 0 10px;font-size:13px;font-weight:600;">Weekly deliverables</div>
+
+<!-- ══ PHASE 1: THEORY ══ -->
+<div class="phase-banner">
+  <span class="phase-label">Phase 1 &mdash; Theory &amp; Framework</span>
+  <span class="phase-badge theory">Weeks 1&ndash;2</span>
+</div>
 <div class="weeks-grid">
 
   <div class="week-card" id="wcard-1">
     <div class="week-head">
       <div class="week-num">Week 1</div>
       <div class="week-dates">Jun 12&ndash;18</div>
-      <div class="week-theme">Diagnose &amp; stabilise</div>
+      <div class="week-theme">Problem &amp; detection</div>
     </div>
     <div class="week-body">
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Diagnostic figures from analysis/ scripts (trigger map, belief traces, Q-delta, learning curves)</div><span class="tag tag-exp">experiments</span></div>
+        <div><div class="deliverable-text">Problem formulation (Sec 2) finalised &mdash; open-set setting, POSG, type space</div><span class="tag tag-theory">theory</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">HIM trigger rate root cause identified; threshold fix or narrative adjustment</div><span class="tag tag-exp">experiments</span></div>
+        <div><div class="deliverable-text">Compulsory attribution definition formally written and motivated with guide-dog example</div><span class="tag tag-theory">theory</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Problem formulation (Sec 2) tightened &mdash; compulsory attribution definition finalised</div><span class="tag tag-theory">theory</span></div>
+        <div><div class="deliverable-text">Mismatch detection module formalised (likelihood test + reward-based test, both variants)</div><span class="tag tag-theory">theory</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">HIM formal spec drafted with Open Issue #1 resolved or scoped out</div><span class="tag tag-theory">theory</span></div>
+        <div><div class="deliverable-text">Open Issue #1 resolved: when to activate HIM &mdash; conditions written precisely</div><span class="tag tag-theory">theory</span></div>
       </div>
-      <div class="decision-point">
-        <div class="diamond-icon"></div>
-        <div class="decision-text"><strong>Decision:</strong> Is HIM trigger rate a bug or calibration issue? Determines whether results claims need revision.</div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Related work skeleton &mdash; section headings + key citations identified</div><span class="tag tag-writing">writing</span></div>
       </div>
     </div>
   </div>
@@ -132,118 +157,187 @@ sitemap: false
     <div class="week-head">
       <div class="week-num">Week 2</div>
       <div class="week-dates">Jun 19&ndash;25</div>
-      <div class="week-theme">Framework + scope</div>
+      <div class="week-theme">HIM, HER &amp; framework</div>
     </div>
     <div class="week-body">
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">HER relabeling proposition / formal guarantee written and checked</div><span class="tag tag-theory">theory</span></div>
+        <div><div class="deliverable-text">HIM formal spec complete &mdash; Q-value update rule finalised and justified</div><span class="tag tag-theory">theory</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Bayesian belief trace figures complete &mdash; within-episode oscillation documented</div><span class="tag tag-exp">experiments</span></div>
+        <div><div class="deliverable-text">HER relabeling proposition written &mdash; buffer consistency guarantee formalised</div><span class="tag tag-theory">theory</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Decomposition section (Sec 5) first draft &mdash; 5 subproblems clearly separated</div><span class="tag tag-theory">theory</span></div>
+        <div><div class="deliverable-text">HER&ndash;HIM analogy table finalised; Sec 3 (Adaptive Agent Framework) coherent end-to-end</div><span class="tag tag-theory">theory</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Abstract + intro rewrite aligned to framework framing</div><span class="tag tag-writing">writing</span></div>
+        <div><div class="deliverable-text">Decomposition section (Sec 5) drafted &mdash; 5 subproblems with clean separation</div><span class="tag tag-theory">theory</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Algorithm 1 pseudocode finalised and consistent with the formal spec</div><span class="tag tag-theory">theory</span></div>
       </div>
       <div class="decision-point">
         <div class="diamond-icon"></div>
-        <div class="decision-text"><strong>Decision:</strong> Second environment (yes/no)? If yes, implementation starts this week.</div>
+        <div class="decision-text"><strong>Gate:</strong> All theoretical claims frozen before proceeding. No new framework additions after this point.</div>
       </div>
     </div>
   </div>
 
-  <div class="week-card" id="wcard-3">
+  <!-- spacer columns -->
+  <div></div><div></div><div></div>
+</div>
+
+<!-- GATE 1 -->
+<div class="gate">
+  <div class="gate-diamond"></div>
+  <div class="gate-text"><strong>Gate 1 &mdash; Theory freeze (Jun 25):</strong> Framework, formal definitions, and algorithm must be fully written and internally consistent before experiment design begins. No proceeding until this gate is cleared.</div>
+</div>
+
+<!-- ══ PHASE 2: EXPERIMENT DESIGN ══ -->
+<div class="phase-banner" style="margin-top:16px">
+  <span class="phase-label">Phase 2 &mdash; Experiment Design</span>
+  <span class="phase-badge exp">Week 3</span>
+</div>
+<div class="weeks-grid">
+  <div></div>
+  <div></div>
+
+  <div class="week-card phase-exp" id="wcard-3">
     <div class="week-head">
       <div class="week-num">Week 3</div>
       <div class="week-dates">Jun 26&ndash;Jul 2</div>
-      <div class="week-theme">Results &amp; freeze framework</div>
+      <div class="week-theme">Design &amp; plan experiments</div>
     </div>
     <div class="week-body">
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Framework claims frozen &mdash; no new theoretical additions after this point</div><span class="tag tag-theory">theory</span></div>
+        <div><div class="deliverable-text">Define research questions the experiments must answer (one per framework claim)</div><span class="tag tag-exp">experiments</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Sensitivity analysis complete (&epsilon; sweep, window fraction w)</div><span class="tag tag-exp">experiments</span></div>
+        <div><div class="deliverable-text">Select environment(s) &mdash; decide on 1 vs 2 environments and justify choice</div><span class="tag tag-exp">experiments</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">2nd environment results in (if in scope)</div><span class="tag tag-exp">experiments</span></div>
+        <div><div class="deliverable-text">Define baselines, metrics, and success criteria for each experiment</div><span class="tag tag-exp">experiments</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Related work section complete &mdash; all \cite{} stubs filled</div><span class="tag tag-writing">writing</span></div>
+        <div><div class="deliverable-text">Write experiment plan doc &mdash; hyperparams, seeds, episode budget, statistical tests</div><span class="tag tag-exp">experiments</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">All paper figures drafted (pipeline TikZ, result tables, diagnostic plots)</div><span class="tag tag-writing">writing</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-card" id="wcard-4">
-    <div class="week-head">
-      <div class="week-num">Week 4</div>
-      <div class="week-dates">Jul 3&ndash;9</div>
-      <div class="week-theme">Full draft</div>
-    </div>
-    <div class="week-body">
-      <div class="deliverable" onclick="toggle(this)">
-        <div class="check-box"></div>
-        <div><div class="deliverable-text">Results frozen &mdash; final figures and tables locked</div><span class="tag tag-exp">experiments</span></div>
-      </div>
-      <div class="deliverable" onclick="toggle(this)">
-        <div class="check-box"></div>
-        <div><div class="deliverable-text">Experiments section (Sec 4) fully written around final figures</div><span class="tag tag-writing">writing</span></div>
-      </div>
-      <div class="deliverable" onclick="toggle(this)">
-        <div class="check-box"></div>
-        <div><div class="deliverable-text">Conclusion + limitations written</div><span class="tag tag-writing">writing</span></div>
-      </div>
-      <div class="deliverable" onclick="toggle(this)">
-        <div class="check-box"></div>
-        <div><div class="deliverable-text">All \todo{} and open issues removed or resolved</div><span class="tag tag-writing">writing</span></div>
-      </div>
-      <div class="deliverable" onclick="toggle(this)">
-        <div class="check-box"></div>
-        <div><div class="deliverable-text">Complete draft sent to co-authors for review</div><span class="tag tag-revision">revision</span></div>
+        <div><div class="deliverable-text">Codebase ready for new runs &mdash; environment(s) implemented, baselines wired up</div><span class="tag tag-exp">experiments</span></div>
       </div>
       <div class="decision-point">
         <div class="diamond-icon"></div>
-        <div class="decision-text"><strong>Decision:</strong> Results frozen. No new experiments after this point.</div>
+        <div class="decision-text"><strong>Gate:</strong> Experiment plan approved before any compute is spent. Scope locked.</div>
       </div>
     </div>
   </div>
 
-  <div class="week-card" id="wcard-5">
+  <div></div><div></div>
+</div>
+
+<!-- GATE 2 -->
+<div class="gate">
+  <div class="gate-diamond"></div>
+  <div class="gate-text"><strong>Gate 2 &mdash; Experiment plan locked (Jul 2):</strong> Research questions, environments, baselines, and metrics agreed. No scope changes after this point &mdash; only execution.</div>
+</div>
+
+<!-- ══ PHASE 3: RUN EXPERIMENTS ══ -->
+<div class="phase-banner" style="margin-top:16px">
+  <span class="phase-label">Phase 3 &mdash; Run Experiments</span>
+  <span class="phase-badge exp">Week 4</span>
+</div>
+<div class="weeks-grid">
+  <div></div><div></div><div></div>
+
+  <div class="week-card phase-exp" id="wcard-4">
     <div class="week-head">
-      <div class="week-num">Week 5</div>
-      <div class="week-dates">Jul 10&ndash;21</div>
-      <div class="week-theme">Polish &amp; submit</div>
+      <div class="week-num">Week 4</div>
+      <div class="week-dates">Jul 3&ndash;9</div>
+      <div class="week-theme">Run &amp; analyse</div>
     </div>
     <div class="week-body">
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Co-author feedback incorporated</div><span class="tag tag-revision">revision</span></div>
+        <div><div class="deliverable-text">Main experiments complete &mdash; all agents, all seeds, all environments</div><span class="tag tag-exp">experiments</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">TikZ figures and all graphics at final quality</div><span class="tag tag-revision">revision</span></div>
+        <div><div class="deliverable-text">Sensitivity / ablation runs complete (&epsilon; sweep, window fraction, episode length)</div><span class="tag tag-exp">experiments</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Page limit check &mdash; AAAI 2027 format, 8 pages + references</div><span class="tag tag-revision">revision</span></div>
+        <div><div class="deliverable-text">Diagnostic figures produced (trigger map, belief traces, Q-delta, learning curves)</div><span class="tag tag-exp">experiments</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
-        <div><div class="deliverable-text">Final proofread &mdash; notation, citations, no broken refs</div><span class="tag tag-revision">revision</span></div>
+        <div><div class="deliverable-text">Statistical analysis complete &mdash; effect sizes, p-values, confidence intervals</div><span class="tag tag-exp">experiments</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">All paper figures at final quality &mdash; tables, plots, TikZ pipeline</div><span class="tag tag-exp">experiments</span></div>
+      </div>
+      <div class="decision-point">
+        <div class="diamond-icon"></div>
+        <div class="decision-text"><strong>Gate:</strong> Results frozen. No re-runs after this point &mdash; writing begins on final numbers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div></div>
+</div>
+
+<!-- GATE 3 -->
+<div class="gate">
+  <div class="gate-diamond"></div>
+  <div class="gate-text"><strong>Gate 3 &mdash; Results freeze (Jul 9):</strong> All figures and tables locked. Writing and revision begin only after this gate. No new experiments in W5.</div>
+</div>
+
+<!-- ══ PHASE 4: WRITE + SUBMIT ══ -->
+<div class="phase-banner" style="margin-top:16px">
+  <span class="phase-label">Phase 4 &mdash; Writing &amp; Submission</span>
+  <span class="phase-badge write">Week 5</span>
+</div>
+<div class="weeks-grid">
+  <div></div><div></div><div></div><div></div>
+
+  <div class="week-card phase-write" id="wcard-5">
+    <div class="week-head">
+      <div class="week-num">Week 5</div>
+      <div class="week-dates">Jul 10&ndash;21</div>
+      <div class="week-theme">Write, revise &amp; submit</div>
+    </div>
+    <div class="week-body">
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Abstract + intro written around final results</div><span class="tag tag-writing">writing</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Experiments section (Sec 4) fully written</div><span class="tag tag-writing">writing</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Related work complete &mdash; all \cite{} stubs filled, OEOM comparison paragraph in</div><span class="tag tag-writing">writing</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Conclusion + limitations written; all \todo{} removed</div><span class="tag tag-writing">writing</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Co-author review round complete; feedback incorporated</div><span class="tag tag-revision">revision</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Page limit + AAAI 2027 format check; notation consistency pass</div><span class="tag tag-revision">revision</span></div>
       </div>
       <div class="deliverable" onclick="toggle(this)">
         <div class="check-box"></div>
@@ -254,6 +348,7 @@ sitemap: false
 
 </div>
 
+<!-- ══ GANTT ══ -->
 <div class="gantt-section">
   <div class="section-title">Timeline overview</div>
   <div class="legend">
@@ -261,7 +356,7 @@ sitemap: false
     <span class="legend-item"><span class="legend-swatch" style="background:#E1F5EE;border:0.5px solid #0F6E56"></span>Experiments</span>
     <span class="legend-item"><span class="legend-swatch" style="background:#FAEEDA;border:0.5px solid #854F0B"></span>Writing</span>
     <span class="legend-item"><span class="legend-swatch" style="background:#FAECE7;border:0.5px solid #993C1D"></span>Revision</span>
-    <span class="legend-item"><span style="width:11px;height:11px;background:#E24B4A;border-radius:2px;transform:rotate(45deg);display:inline-block"></span>Decision</span>
+    <span class="legend-item"><span style="width:11px;height:11px;background:#E24B4A;border-radius:2px;transform:rotate(45deg);display:inline-block"></span>Gate / decision</span>
   </div>
   <table class="gantt-table">
     <thead>
@@ -275,32 +370,43 @@ sitemap: false
       </tr>
     </thead>
     <tbody>
-      <tr class="section-row"><td colspan="6">Theory &amp; framework</td></tr>
+      <tr class="section-row"><td colspan="6">Phase 1 &mdash; Theory &amp; Framework</td></tr>
       <tr><td class="label-col">Problem formulation (Sec 2)</td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="label-col">HIM formal spec + Open Issue #1</td><td><div class="g-bar theory"></div></td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">Compulsory attribution definition</td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">Detection module (likelihood + reward)</td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">Open Issue #1 resolved</td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">HIM formal spec + Q-update rule</td><td></td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td></tr>
       <tr><td class="label-col">HER relabeling proposition</td><td></td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td></tr>
-      <tr><td class="label-col">Decomposition section (Sec 5)</td><td></td><td><div class="g-bar theory"></div></td><td><div class="g-bar theory"></div></td><td></td><td></td></tr>
-      <tr><td class="label-col" style="color:#A32D2D;font-weight:500">&diams; Freeze framework claims</td><td></td><td></td><td><div class="g-diamond"></div></td><td></td><td></td></tr>
-      <tr class="section-row"><td colspan="6">Experiments</td></tr>
-      <tr><td class="label-col">Diagnostic scripts + figures</td><td><div class="g-bar exp"></div></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="label-col">Fix HIM trigger / threshold</td><td><div class="g-bar exp"></div></td><td><div class="g-bar exp"></div></td><td></td><td></td><td></td></tr>
-      <tr><td class="label-col">Belief traces + buffer analysis</td><td></td><td><div class="g-bar exp"></div></td><td></td><td></td><td></td></tr>
-      <tr><td class="label-col" style="color:#A32D2D;font-weight:500">&diams; Decide: 2nd environment?</td><td></td><td><div class="g-diamond"></div></td><td></td><td></td><td></td></tr>
-      <tr><td class="label-col">2nd environment (if yes)</td><td></td><td><div class="g-bar exp"></div></td><td><div class="g-bar exp"></div></td><td></td><td></td></tr>
-      <tr><td class="label-col">Sensitivity analysis (&epsilon; sweep)</td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td><td></td></tr>
-      <tr><td class="label-col">Final figures produced</td><td></td><td></td><td><div class="g-bar exp"></div></td><td><div class="g-bar exp"></div></td><td></td></tr>
-      <tr><td class="label-col" style="color:#A32D2D;font-weight:500">&diams; Freeze results</td><td></td><td></td><td></td><td><div class="g-diamond"></div></td><td></td></tr>
-      <tr class="section-row"><td colspan="6">Writing</td></tr>
-      <tr><td class="label-col">Abstract + intro rewrite</td><td></td><td><div class="g-bar writing"></div></td><td></td><td></td><td></td></tr>
-      <tr><td class="label-col">Related work (fill citations)</td><td></td><td><div class="g-bar writing"></div></td><td><div class="g-bar writing"></div></td><td></td><td></td></tr>
-      <tr><td class="label-col">Experiments section write-up</td><td></td><td></td><td></td><td><div class="g-bar writing"></div></td><td></td></tr>
-      <tr><td class="label-col">Conclusion + limitations</td><td></td><td></td><td></td><td><div class="g-bar writing"></div></td><td></td></tr>
-      <tr><td class="label-col">Clear all \todo{} / open issues</td><td></td><td></td><td></td><td><div class="g-bar writing"></div></td><td><div class="g-bar writing"></div></td></tr>
-      <tr class="section-row"><td colspan="6">Revision &amp; polish</td></tr>
-      <tr><td class="label-col">Co-author review round</td><td></td><td></td><td></td><td></td><td><div class="g-bar revision"></div></td></tr>
-      <tr><td class="label-col">TikZ + figure polish</td><td></td><td></td><td></td><td></td><td><div class="g-bar revision"></div></td></tr>
-      <tr><td class="label-col">Page limit + format check</td><td></td><td></td><td></td><td></td><td><div class="g-bar revision"></div></td></tr>
-      <tr><td class="label-col" style="color:#A32D2D;font-weight:500">&diams; Abstract submitted Jul 21</td><td></td><td></td><td></td><td></td><td><div class="g-diamond"></div></td></tr>
+      <tr><td class="label-col">Algorithm 1 pseudocode finalised</td><td></td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">Decomposition section (Sec 5)</td><td></td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td></tr>
+
+      <tr class="gate-row"><td class="label-col">&diams; Gate 1: Theory freeze</td><td></td><td><div class="g-diamond"></div></td><td></td><td></td><td></td></tr>
+
+      <tr class="section-row"><td colspan="6">Phase 2 &mdash; Experiment Design</td></tr>
+      <tr><td class="label-col">Define research questions</td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td><td></td></tr>
+      <tr><td class="label-col">Select environments &amp; baselines</td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td><td></td></tr>
+      <tr><td class="label-col">Write experiment plan doc</td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td><td></td></tr>
+      <tr><td class="label-col">Codebase ready for new runs</td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td><td></td></tr>
+
+      <tr class="gate-row"><td class="label-col">&diams; Gate 2: Experiment plan locked</td><td></td><td></td><td><div class="g-diamond"></div></td><td></td><td></td></tr>
+
+      <tr class="section-row"><td colspan="6">Phase 3 &mdash; Run Experiments</td></tr>
+      <tr><td class="label-col">Main experiments (all agents, seeds)</td><td></td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td></tr>
+      <tr><td class="label-col">Ablations (&epsilon; sweep, episode length)</td><td></td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td></tr>
+      <tr><td class="label-col">Diagnostic figures</td><td></td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td></tr>
+      <tr><td class="label-col">Statistical analysis complete</td><td></td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td></tr>
+      <tr><td class="label-col">All paper figures at final quality</td><td></td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td></tr>
+
+      <tr class="gate-row"><td class="label-col">&diams; Gate 3: Results freeze</td><td></td><td></td><td></td><td><div class="g-diamond"></div></td><td></td></tr>
+
+      <tr class="section-row"><td colspan="6">Phase 4 &mdash; Writing &amp; Submission</td></tr>
+      <tr><td class="label-col">Abstract + intro</td><td></td><td></td><td></td><td></td><td><div class="g-bar writing"></div></td></tr>
+      <tr><td class="label-col">Experiments section (Sec 4)</td><td></td><td></td><td></td><td></td><td><div class="g-bar writing"></div></td></tr>
+      <tr><td class="label-col">Related work + conclusion</td><td></td><td></td><td></td><td></td><td><div class="g-bar writing"></div></td></tr>
+      <tr><td class="label-col">Co-author review + revision</td><td></td><td></td><td></td><td></td><td><div class="g-bar revision"></div></td></tr>
+      <tr><td class="label-col">Format check + proofread</td><td></td><td></td><td></td><td></td><td><div class="g-bar revision"></div></td></tr>
+
+      <tr class="gate-row"><td class="label-col">&diams; Abstract submitted Jul 21</td><td></td><td></td><td></td><td></td><td><div class="g-diamond"></div></td></tr>
     </tbody>
   </table>
 </div>
@@ -309,7 +415,7 @@ sitemap: false
 </main>
 
 <script>
-const STORAGE_KEY = 'himher_tracker_v1';
+const STORAGE_KEY = 'himher_tracker_v2';
 function loadState() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
 function saveState(s) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch {} }
 function getId(el) { return btoa(unescape(encodeURIComponent(el.querySelector('.deliverable-text').textContent.trim().slice(0,60)))).slice(0,20); }
@@ -341,7 +447,10 @@ function toggle(el) {
 (function init() {
   const s = loadState();
   document.querySelectorAll('.deliverable').forEach(el => {
-    if (s[getId(el)]) { el.querySelector('.check-box').classList.add('done'); el.querySelector('.deliverable-text').classList.add('done'); }
+    if (s[getId(el)]) {
+      el.querySelector('.check-box').classList.add('done');
+      el.querySelector('.deliverable-text').classList.add('done');
+    }
   });
   updateProgress();
 })();
