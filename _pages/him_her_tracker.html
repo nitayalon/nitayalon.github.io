@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIM+HER · AAAI 2027 Progress Tracker</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f2; --surface: #ffffff;
+    --border: rgba(0,0,0,0.08); --border-strong: rgba(0,0,0,0.15);
+    --text: #1a1a18; --text-muted: #6b6b66; --text-faint: #9e9e98;
+    --purple-fill:#EEEDFE; --purple-stroke:#534AB7; --purple-text:#3C3489;
+    --teal-fill:#E1F5EE; --teal-stroke:#0F6E56; --teal-text:#085041;
+    --amber-fill:#FAEEDA; --amber-stroke:#854F0B; --amber-text:#633806;
+    --coral-fill:#FAECE7; --coral-stroke:#993C1D; --coral-text:#712B13;
+    --red:#E24B4A; --red-dark:#A32D2D; --green-ok:#1D9E75;
+    --radius:8px; --radius-lg:12px;
+  }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,-apple-system,sans-serif; font-size:13px; line-height:1.5; min-height:100vh; padding:0 0 60px; }
+  header { background:var(--surface); border-bottom:0.5px solid var(--border-strong); padding:20px 32px 16px; position:sticky; top:0; z-index:10; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .header-title { font-size:16px; font-weight:600; letter-spacing:-0.3px; }
+  .header-sub { font-size:12px; color:var(--text-muted); margin-top:2px; }
+  .deadline-badge { background:#FCEBEB; color:var(--red-dark); border:0.5px solid #F09595; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:600; }
+  .progress-wrap { padding:16px 32px 0; display:flex; align-items:center; gap:12px; }
+  .progress-track { flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--green-ok); border-radius:3px; transition:width 0.4s ease; }
+  .progress-label { font-size:12px; color:var(--text-muted); white-space:nowrap; }
+  main { padding:20px 32px 0; }
+  .weeks-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:28px; }
+  .week-card { background:var(--surface); border:0.5px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
+  .week-card.active { border-color:var(--purple-stroke); box-shadow:0 0 0 2px rgba(83,74,183,0.12); }
+  .week-head { padding:10px 12px 8px; border-bottom:0.5px solid var(--border); }
+  .week-num { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; }
+  .week-dates { font-size:10px; color:var(--text-faint); }
+  .week-theme { font-size:12px; font-weight:600; color:var(--text); margin-top:3px; }
+  .week-body { padding:10px 12px; }
+  .deliverable { display:flex; align-items:flex-start; gap:8px; padding:5px 0; border-bottom:0.5px solid var(--border); cursor:pointer; }
+  .deliverable:last-child { border-bottom:none; }
+  .check-box { width:16px; height:16px; min-width:16px; border:1.5px solid var(--border-strong); border-radius:4px; margin-top:1px; display:flex; align-items:center; justify-content:center; transition:background 0.15s,border-color 0.15s; }
+  .check-box.done { background:var(--green-ok); border-color:var(--green-ok); }
+  .check-box.done::after { content:'✓'; color:white; font-size:10px; font-weight:700; }
+  .deliverable-text { font-size:12px; color:var(--text); line-height:1.4; flex:1; }
+  .deliverable-text.done { color:var(--text-faint); text-decoration:line-through; }
+  .tag { display:inline-block; font-size:10px; font-weight:500; padding:1px 6px; border-radius:10px; white-space:nowrap; margin-top:2px; }
+  .tag-theory  { background:var(--purple-fill); color:var(--purple-text); border:0.5px solid var(--purple-stroke); }
+  .tag-exp     { background:var(--teal-fill);   color:var(--teal-text);   border:0.5px solid var(--teal-stroke); }
+  .tag-writing { background:var(--amber-fill);  color:var(--amber-text);  border:0.5px solid var(--amber-stroke); }
+  .tag-revision{ background:var(--coral-fill);  color:var(--coral-text);  border:0.5px solid var(--coral-stroke); }
+  .decision-point { display:flex; align-items:flex-start; gap:8px; background:#FEF9EC; border:0.5px solid #EF9F27; border-radius:var(--radius); padding:8px 10px; margin-top:8px; }
+  .diamond-icon { width:12px; height:12px; min-width:12px; background:var(--red); border-radius:2px; transform:rotate(45deg); margin-top:2px; }
+  .decision-text { font-size:11px; color:#633806; line-height:1.4; }
+  .gantt-section { margin-bottom:28px; }
+  .section-title { font-size:13px; font-weight:600; color:var(--text); margin-bottom:10px; }
+  .gantt-table { width:100%; border-collapse:collapse; }
+  .gantt-table th { font-size:11px; font-weight:500; color:var(--text-muted); text-align:center; padding:4px 6px; border-bottom:0.5px solid var(--border-strong); }
+  .gantt-table th.label-col { text-align:left; width:200px; }
+  .gantt-table td { padding:3px 4px; vertical-align:middle; }
+  .gantt-table td.label-col { font-size:12px; color:var(--text); padding-right:12px; white-space:nowrap; }
+  .gantt-table tr:hover td { background:rgba(0,0,0,0.02); }
+  .gantt-table tr.section-row td { font-size:11px; font-weight:600; color:var(--text-muted); padding-top:12px; padding-bottom:2px; text-transform:uppercase; letter-spacing:0.4px; border-bottom:0.5px solid var(--border); }
+  .g-bar { height:18px; border-radius:4px; width:100%; }
+  .g-bar.theory   { background:var(--purple-fill); border:0.5px solid var(--purple-stroke); }
+  .g-bar.exp      { background:var(--teal-fill);   border:0.5px solid var(--teal-stroke); }
+  .g-bar.writing  { background:var(--amber-fill);  border:0.5px solid var(--amber-stroke); }
+  .g-bar.revision { background:var(--coral-fill);  border:0.5px solid var(--coral-stroke); }
+  .g-diamond { width:12px; height:12px; background:var(--red); border-radius:2px; transform:rotate(45deg); margin:auto; }
+  .legend { display:flex; flex-wrap:wrap; gap:14px; margin-bottom:16px; }
+  .legend-item { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--text-muted); }
+  .legend-swatch { width:11px; height:11px; border-radius:3px; }
+  .footer-note { font-size:11px; color:var(--text-faint); text-align:center; margin-top:24px; }
+  @media(max-width:900px){ .weeks-grid{grid-template-columns:1fr 1fr;} header,main,.progress-wrap{padding-left:16px;padding-right:16px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="header-title">HIM+HER &middot; AAAI 2027 Submission Tracker</div>
+    <div class="header-sub">Hindsight-Based Adaptation in Open-Set Multi-Agent Domains</div>
+  </div>
+  <div class="deadline-badge">Abstract deadline: July 21, 2027</div>
+</header>
+
+<div class="progress-wrap">
+  <span class="progress-label" id="progress-text">0 / 0 complete</span>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <span class="progress-label" id="progress-pct">0%</span>
+</div>
+
+<main>
+<div style="margin:20px 0 10px;font-size:13px;font-weight:600;">Weekly deliverables</div>
+<div class="weeks-grid">
+
+  <div class="week-card" id="wcard-1">
+    <div class="week-head">
+      <div class="week-num">Week 1</div>
+      <div class="week-dates">Jun 12&ndash;18</div>
+      <div class="week-theme">Diagnose &amp; stabilise</div>
+    </div>
+    <div class="week-body">
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Diagnostic figures from analysis/ scripts (trigger map, belief traces, Q-delta, learning curves)</div><span class="tag tag-exp">experiments</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">HIM trigger rate root cause identified; threshold fix or narrative adjustment</div><span class="tag tag-exp">experiments</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Problem formulation (Sec 2) tightened &mdash; compulsory attribution definition finalised</div><span class="tag tag-theory">theory</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">HIM formal spec drafted with Open Issue #1 resolved or scoped out</div><span class="tag tag-theory">theory</span></div>
+      </div>
+      <div class="decision-point">
+        <div class="diamond-icon"></div>
+        <div class="decision-text"><strong>Decision:</strong> Is HIM trigger rate a bug or calibration issue? Determines whether results claims need revision.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card" id="wcard-2">
+    <div class="week-head">
+      <div class="week-num">Week 2</div>
+      <div class="week-dates">Jun 19&ndash;25</div>
+      <div class="week-theme">Framework + scope</div>
+    </div>
+    <div class="week-body">
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">HER relabeling proposition / formal guarantee written and checked</div><span class="tag tag-theory">theory</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Bayesian belief trace figures complete &mdash; within-episode oscillation documented</div><span class="tag tag-exp">experiments</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Decomposition section (Sec 5) first draft &mdash; 5 subproblems clearly separated</div><span class="tag tag-theory">theory</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Abstract + intro rewrite aligned to framework framing</div><span class="tag tag-writing">writing</span></div>
+      </div>
+      <div class="decision-point">
+        <div class="diamond-icon"></div>
+        <div class="decision-text"><strong>Decision:</strong> Second environment (yes/no)? If yes, implementation starts this week.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card" id="wcard-3">
+    <div class="week-head">
+      <div class="week-num">Week 3</div>
+      <div class="week-dates">Jun 26&ndash;Jul 2</div>
+      <div class="week-theme">Results &amp; freeze framework</div>
+    </div>
+    <div class="week-body">
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Framework claims frozen &mdash; no new theoretical additions after this point</div><span class="tag tag-theory">theory</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Sensitivity analysis complete (&epsilon; sweep, window fraction w)</div><span class="tag tag-exp">experiments</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">2nd environment results in (if in scope)</div><span class="tag tag-exp">experiments</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Related work section complete &mdash; all \cite{} stubs filled</div><span class="tag tag-writing">writing</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">All paper figures drafted (pipeline TikZ, result tables, diagnostic plots)</div><span class="tag tag-writing">writing</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card" id="wcard-4">
+    <div class="week-head">
+      <div class="week-num">Week 4</div>
+      <div class="week-dates">Jul 3&ndash;9</div>
+      <div class="week-theme">Full draft</div>
+    </div>
+    <div class="week-body">
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Results frozen &mdash; final figures and tables locked</div><span class="tag tag-exp">experiments</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Experiments section (Sec 4) fully written around final figures</div><span class="tag tag-writing">writing</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Conclusion + limitations written</div><span class="tag tag-writing">writing</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">All \todo{} and open issues removed or resolved</div><span class="tag tag-writing">writing</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Complete draft sent to co-authors for review</div><span class="tag tag-revision">revision</span></div>
+      </div>
+      <div class="decision-point">
+        <div class="diamond-icon"></div>
+        <div class="decision-text"><strong>Decision:</strong> Results frozen. No new experiments after this point.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-card" id="wcard-5">
+    <div class="week-head">
+      <div class="week-num">Week 5</div>
+      <div class="week-dates">Jul 10&ndash;21</div>
+      <div class="week-theme">Polish &amp; submit</div>
+    </div>
+    <div class="week-body">
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Co-author feedback incorporated</div><span class="tag tag-revision">revision</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">TikZ figures and all graphics at final quality</div><span class="tag tag-revision">revision</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Page limit check &mdash; AAAI 2027 format, 8 pages + references</div><span class="tag tag-revision">revision</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text">Final proofread &mdash; notation, citations, no broken refs</div><span class="tag tag-revision">revision</span></div>
+      </div>
+      <div class="deliverable" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div><div class="deliverable-text" style="font-weight:600;color:#A32D2D">Abstract submitted by July 21</div><span class="tag tag-revision">deadline</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="gantt-section">
+  <div class="section-title">Timeline overview</div>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-swatch" style="background:#EEEDFE;border:0.5px solid #534AB7"></span>Theory / framework</span>
+    <span class="legend-item"><span class="legend-swatch" style="background:#E1F5EE;border:0.5px solid #0F6E56"></span>Experiments</span>
+    <span class="legend-item"><span class="legend-swatch" style="background:#FAEEDA;border:0.5px solid #854F0B"></span>Writing</span>
+    <span class="legend-item"><span class="legend-swatch" style="background:#FAECE7;border:0.5px solid #993C1D"></span>Revision</span>
+    <span class="legend-item"><span style="width:11px;height:11px;background:#E24B4A;border-radius:2px;transform:rotate(45deg);display:inline-block"></span>Decision</span>
+  </div>
+  <table class="gantt-table">
+    <thead>
+      <tr>
+        <th class="label-col">Task</th>
+        <th>W1<br><small style="font-weight:400;color:#9e9e98">Jun 12</small></th>
+        <th>W2<br><small style="font-weight:400;color:#9e9e98">Jun 19</small></th>
+        <th>W3<br><small style="font-weight:400;color:#9e9e98">Jun 26</small></th>
+        <th>W4<br><small style="font-weight:400;color:#9e9e98">Jul 3</small></th>
+        <th>W5<br><small style="font-weight:400;color:#9e9e98">Jul 10</small></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="section-row"><td colspan="6">Theory &amp; framework</td></tr>
+      <tr><td class="label-col">Problem formulation (Sec 2)</td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">HIM formal spec + Open Issue #1</td><td><div class="g-bar theory"></div></td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">HER relabeling proposition</td><td></td><td><div class="g-bar theory"></div></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">Decomposition section (Sec 5)</td><td></td><td><div class="g-bar theory"></div></td><td><div class="g-bar theory"></div></td><td></td><td></td></tr>
+      <tr><td class="label-col" style="color:#A32D2D;font-weight:500">&diams; Freeze framework claims</td><td></td><td></td><td><div class="g-diamond"></div></td><td></td><td></td></tr>
+      <tr class="section-row"><td colspan="6">Experiments</td></tr>
+      <tr><td class="label-col">Diagnostic scripts + figures</td><td><div class="g-bar exp"></div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">Fix HIM trigger / threshold</td><td><div class="g-bar exp"></div></td><td><div class="g-bar exp"></div></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">Belief traces + buffer analysis</td><td></td><td><div class="g-bar exp"></div></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col" style="color:#A32D2D;font-weight:500">&diams; Decide: 2nd environment?</td><td></td><td><div class="g-diamond"></div></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">2nd environment (if yes)</td><td></td><td><div class="g-bar exp"></div></td><td><div class="g-bar exp"></div></td><td></td><td></td></tr>
+      <tr><td class="label-col">Sensitivity analysis (&epsilon; sweep)</td><td></td><td></td><td><div class="g-bar exp"></div></td><td></td><td></td></tr>
+      <tr><td class="label-col">Final figures produced</td><td></td><td></td><td><div class="g-bar exp"></div></td><td><div class="g-bar exp"></div></td><td></td></tr>
+      <tr><td class="label-col" style="color:#A32D2D;font-weight:500">&diams; Freeze results</td><td></td><td></td><td></td><td><div class="g-diamond"></div></td><td></td></tr>
+      <tr class="section-row"><td colspan="6">Writing</td></tr>
+      <tr><td class="label-col">Abstract + intro rewrite</td><td></td><td><div class="g-bar writing"></div></td><td></td><td></td><td></td></tr>
+      <tr><td class="label-col">Related work (fill citations)</td><td></td><td><div class="g-bar writing"></div></td><td><div class="g-bar writing"></div></td><td></td><td></td></tr>
+      <tr><td class="label-col">Experiments section write-up</td><td></td><td></td><td></td><td><div class="g-bar writing"></div></td><td></td></tr>
+      <tr><td class="label-col">Conclusion + limitations</td><td></td><td></td><td></td><td><div class="g-bar writing"></div></td><td></td></tr>
+      <tr><td class="label-col">Clear all \todo{} / open issues</td><td></td><td></td><td></td><td><div class="g-bar writing"></div></td><td><div class="g-bar writing"></div></td></tr>
+      <tr class="section-row"><td colspan="6">Revision &amp; polish</td></tr>
+      <tr><td class="label-col">Co-author review round</td><td></td><td></td><td></td><td></td><td><div class="g-bar revision"></div></td></tr>
+      <tr><td class="label-col">TikZ + figure polish</td><td></td><td></td><td></td><td></td><td><div class="g-bar revision"></div></td></tr>
+      <tr><td class="label-col">Page limit + format check</td><td></td><td></td><td></td><td></td><td><div class="g-bar revision"></div></td></tr>
+      <tr><td class="label-col" style="color:#A32D2D;font-weight:500">&diams; Abstract submitted Jul 21</td><td></td><td></td><td></td><td></td><td><div class="g-diamond"></div></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="footer-note">Click any deliverable to mark it complete &middot; Progress saves in your browser</p>
+</main>
+
+<script>
+const STORAGE_KEY = 'himher_tracker_v1';
+function loadState() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+function saveState(s) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch {} }
+function getId(el) { return btoa(unescape(encodeURIComponent(el.querySelector('.deliverable-text').textContent.trim().slice(0,60)))).slice(0,20); }
+
+function updateProgress() {
+  const all = document.querySelectorAll('.deliverable');
+  const done = document.querySelectorAll('.check-box.done');
+  const pct = all.length ? Math.round(done.length / all.length * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-text').textContent = done.length + ' / ' + all.length + ' complete';
+  for (let w = 1; w <= 5; w++) {
+    const c = document.getElementById('wcard-' + w);
+    if (!c) continue;
+    c.classList.remove('active');
+    if (c.querySelectorAll('.check-box:not(.done)').length > 0) { c.classList.add('active'); break; }
+  }
+}
+
+function toggle(el) {
+  const box = el.querySelector('.check-box');
+  const txt = el.querySelector('.deliverable-text');
+  const done = box.classList.toggle('done');
+  txt.classList.toggle('done', done);
+  const s = loadState(); s[getId(el)] = done; saveState(s);
+  updateProgress();
+}
+
+(function init() {
+  const s = loadState();
+  document.querySelectorAll('.deliverable').forEach(el => {
+    if (s[getId(el)]) { el.querySelector('.check-box').classList.add('done'); el.querySelector('.deliverable-text').classList.add('done'); }
+  });
+  updateProgress();
+})();
+</script>
+</body>
+</html>
